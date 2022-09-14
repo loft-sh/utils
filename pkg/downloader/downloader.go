@@ -2,7 +2,7 @@ package downloader
 
 import (
 	"context"
-	"github.com/go-logr/logr"
+	"fmt"
 	"github.com/loft-sh/loft-util/pkg/downloader/commands"
 	"io"
 	"net/http"
@@ -19,14 +19,12 @@ type Downloader interface {
 type downloader struct {
 	httpGet getRequest
 	command commands.Command
-	log     logr.Logger
 }
 
-func NewDownloader(command commands.Command, log logr.Logger) Downloader {
+func NewDownloader(command commands.Command) Downloader {
 	return &downloader{
 		httpGet: http.Get,
 		command: command,
-		log:     log,
 	}
 }
 
@@ -76,8 +74,7 @@ func (d *downloader) downloadExecutable(command, installPath, installFromURL str
 type getRequest func(url string) (*http.Response, error)
 
 func (d *downloader) downloadFile(command, installPath, installFromURL string) error {
-	d.log.Info("Downloading " + command + "...")
-
+	fmt.Printf("Downloading %s at %s ...", command, installPath)
 	t, err := os.MkdirTemp("", "")
 	if err != nil {
 		return err
