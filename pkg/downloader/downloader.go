@@ -5,7 +5,6 @@ import (
 	"github.com/go-logr/logr"
 	"github.com/loft-sh/loft-util/pkg/downloader/commands"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -79,25 +78,31 @@ type getRequest func(url string) (*http.Response, error)
 func (d *downloader) downloadFile(command, installPath, installFromURL string) error {
 	d.log.Info("Downloading " + command + "...")
 
-	t, err := ioutil.TempDir("", "")
+	t, err := os.MkdirTemp("", "")
 	if err != nil {
 		return err
 	}
-	defer os.RemoveAll(t)
+	defer func(path string) {
+		_ = os.RemoveAll(path)
+	}(t)
 
 	archiveFile := filepath.Join(t, "download")
 	f, err := os.Create(archiveFile)
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	resp, err := d.httpGet(installFromURL)
 	if err != nil {
 		return errors.Wrap(err, "get url")
 	}
 
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	_, err = io.Copy(f, resp.Body)
 	if err != nil {
