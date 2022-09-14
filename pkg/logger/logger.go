@@ -5,18 +5,6 @@ import (
 	"io"
 )
 
-// LogFunctionType type
-type LogFunctionType uint32
-
-const (
-	FatalFn LogFunctionType = iota
-	ErrorFn
-	WarnFn
-	InfoFn
-	DebugFn
-	DoneFn
-)
-
 // Logger defines the common logging interface
 type Logger interface {
 	Debug(args ...interface{})
@@ -47,10 +35,4 @@ type Logger interface {
 
 	SetLevel(level logrus.Level)
 	GetLevel() logrus.Level
-
-	ErrorStreamOnly() Logger
-	WithPrefix(prefix string) Logger
-	WithPrefixColor(prefix, color string) Logger
-	WithSink(sink Logger) Logger
-	AddSink(sink Logger)
 }
