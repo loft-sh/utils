@@ -5,16 +5,16 @@ import (
 	"io"
 )
 
-// Level type
-type logFunctionType uint32
+// LogFunctionType type
+type LogFunctionType uint32
 
 const (
-	fatalFn logFunctionType = iota
-	errorFn
-	warnFn
-	infoFn
-	debugFn
-	doneFn
+	FatalFn LogFunctionType = iota
+	ErrorFn
+	WarnFn
+	InfoFn
+	DebugFn
+	DoneFn
 )
 
 // Logger defines the common logging interface
