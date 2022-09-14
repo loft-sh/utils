@@ -2,7 +2,6 @@ package log
 
 import (
 	"github.com/sirupsen/logrus"
-	"io"
 )
 
 // Logger defines the common logging interface
@@ -28,10 +27,11 @@ type Logger interface {
 	Print(level logrus.Level, args ...interface{})
 	Printf(level logrus.Level, format string, args ...interface{})
 
-	Writer(level logrus.Level, raw bool) io.WriteCloser
-	WriteString(level logrus.Level, message string)
+	Panic(args ...interface{})
+	Panicf(format string, args ...interface{})
 
-	//Question(params *survey.QuestionOptions) (string, error)
+	Fail(args ...interface{})
+	Failf(format string, args ...interface{})
 
 	SetLevel(level logrus.Level)
 	GetLevel() logrus.Level
