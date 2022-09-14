@@ -48,8 +48,6 @@ type Logger interface {
 	SetLevel(level logrus.Level)
 	GetLevel() logrus.Level
 
-	// WithLevel creates a new logger with the given level
-	WithLevel(level logrus.Level) Logger
 	ErrorStreamOnly() Logger
 	WithPrefix(prefix string) Logger
 	WithPrefixColor(prefix, color string) Logger
