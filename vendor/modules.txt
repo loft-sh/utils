@@ -17,6 +17,9 @@ github.com/sirupsen/logrus
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 golang.org/x/sys/windows
+# k8s.io/apimachinery v0.25.2
+## explicit; go 1.19
+k8s.io/apimachinery/pkg/version
 # mvdan.cc/sh/v3 v3.5.1
 ## explicit; go 1.17
 mvdan.cc/sh/v3/expand
