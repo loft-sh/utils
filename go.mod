@@ -1,4 +1,4 @@
-module github.com/loft-sh/loft-util
+module github.com/loft-sh/utils
 
 go 1.19
 
@@ -11,7 +11,6 @@ require (
 )
 
 require (
-	github.com/google/go-cmp v0.5.8 // indirect
 	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
 	k8s.io/apimachinery v0.25.2
 )

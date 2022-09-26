@@ -1,8 +1,8 @@
 package values
 
 import (
-	"github.com/loft-sh/loft-util/pkg/helm"
-	"github.com/loft-sh/loft-util/pkg/log"
+	"github.com/loft-sh/utils/pkg/helm"
+	"github.com/loft-sh/utils/pkg/log"
 )
 
 func GetDefaultReleaseValues(chartOptions *helm.ChartOptions, log log.Logger) (string, error) {

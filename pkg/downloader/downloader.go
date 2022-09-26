@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/loft-sh/loft-util/pkg/downloader/commands"
-	"github.com/loft-sh/loft-util/pkg/log"
+	"github.com/loft-sh/utils/pkg/downloader/commands"
+	"github.com/loft-sh/utils/pkg/log"
 
 	"github.com/pkg/errors"
 )
