@@ -3,8 +3,8 @@ package values
 import (
 	"strings"
 
-	"github.com/loft-sh/loft-util/pkg/helm"
-	"github.com/loft-sh/loft-util/pkg/log"
+	"github.com/loft-sh/utils/pkg/helm"
+	"github.com/loft-sh/utils/pkg/log"
 )
 
 var K8SAPIVersionMap = map[string]string{

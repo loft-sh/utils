@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/loft-sh/loft-util/pkg/helm"
-	"github.com/loft-sh/loft-util/pkg/log"
+	"github.com/loft-sh/utils/pkg/helm"
+	"github.com/loft-sh/utils/pkg/log"
 	"k8s.io/apimachinery/pkg/version"
 )
 
