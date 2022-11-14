@@ -8,9 +8,7 @@ import (
 )
 
 var EKSAPIVersionMap = map[string]string{
-	"1.23": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.23.7-eks-1-23-4",
-	"1.21": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.21.13-eks-1-21-17",
-	"1.20": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.20.15-eks-1-20-19",
+	"1.24": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.24.6-eks-1-24-3",
 }
 
 var EKSControllerVersionMap = map[string]string{
@@ -43,12 +41,12 @@ func getDefaultEKSReleaseValues(chartOptions *helm.ChartOptions, log log.Logger)
 	etcdImage := EKSEtcdVersionMap[serverVersionString]
 	corednsImage, ok := EKSCoreDNSVersionMap[serverVersionString]
 	if !ok {
-		if serverMinorInt > 23 {
-			log.Infof("officially unsupported host server version %s, will fallback to virtual cluster version v1.23", serverVersionString)
-			apiImage = EKSAPIVersionMap["1.23"]
-			controllerImage = EKSControllerVersionMap["1.23"]
-			etcdImage = EKSEtcdVersionMap["1.23"]
-			corednsImage = EKSCoreDNSVersionMap["1.23"]
+		if serverMinorInt > 24 {
+			log.Infof("officially unsupported host server version %s, will fallback to virtual cluster version v1.24", serverVersionString)
+			apiImage = EKSAPIVersionMap["1.24"]
+			controllerImage = EKSControllerVersionMap["1.24"]
+			etcdImage = EKSEtcdVersionMap["1.24"]
+			corednsImage = EKSCoreDNSVersionMap["1.24"]
 		} else {
 			log.Infof("officially unsupported host server version %s, will fallback to virtual cluster version v1.20", serverVersionString)
 			apiImage = EKSAPIVersionMap["1.20"]
