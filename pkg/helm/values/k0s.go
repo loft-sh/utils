@@ -9,6 +9,9 @@ import (
 
 var K0SVersionMap = map[string]string{
 	"1.25": "k0sproject/k0s:v1.25.3-k0s.0",
+	"1.24": "k0sproject/k0s:v1.24.7-k0s.0",
+	"1.23": "k0sproject/k0s:v1.23.13-k0s.0",
+	"1.22": "k0sproject/k0s:v1.22.15-k0s.0",
 }
 
 func getDefaultK0SReleaseValues(chartOptions *helm.ChartOptions, log log.Logger) (string, error) {
