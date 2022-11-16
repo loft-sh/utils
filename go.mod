@@ -10,7 +10,4 @@ require (
 	mvdan.cc/sh/v3 v3.5.1
 )
 
-require (
-	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
-	k8s.io/apimachinery v0.25.2
-)
+require golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
