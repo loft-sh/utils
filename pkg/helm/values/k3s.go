@@ -6,8 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	helm "github.com/loft-sh/utils/pkg/helm"
-	kubernetes "github.com/loft-sh/utils/pkg/helm"
+	"github.com/loft-sh/utils/pkg/helm"
 	"github.com/loft-sh/utils/pkg/log"
 )
 
@@ -140,7 +139,7 @@ isolation:
 	return values, nil
 }
 
-func ParseKubernetesVersionInfo(versionStr string) (*kubernetes.Version, error) {
+func ParseKubernetesVersionInfo(versionStr string) (*helm.Version, error) {
 	if versionStr[0] == 'v' {
 		versionStr = versionStr[1:]
 	}
@@ -153,16 +152,16 @@ func ParseKubernetesVersionInfo(versionStr string) (*kubernetes.Version, error) 
 	major := splittedVersion[0]
 	minor := splittedVersion[1]
 
-	return &kubernetes.Version{
+	return &helm.Version{
 		Major: major,
 		Minor: minor,
 	}, nil
 }
 
-func GetKubernetesVersion(serverVersion kubernetes.Version) string {
+func GetKubernetesVersion(serverVersion helm.Version) string {
 	return replaceRegEx.ReplaceAllString(serverVersion.Major, "") + "." + replaceRegEx.ReplaceAllString(serverVersion.Minor, "")
 }
 
-func GetKubernetesMinorVersion(serverVersion kubernetes.Version) (int, error) {
+func GetKubernetesMinorVersion(serverVersion helm.Version) (int, error) {
 	return strconv.Atoi(replaceRegEx.ReplaceAllString(serverVersion.Minor, ""))
 }
