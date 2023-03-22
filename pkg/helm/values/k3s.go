@@ -41,7 +41,7 @@ var baseArgsMap = map[string]string{
 
 var replaceRegEx = regexp.MustCompile("[^0-9]+")
 
-func getDefaultK3SReleaseValues(chartOptions *helm.ChartOptions, log log.Logger) (string, error) {
+func getDefaultK3SReleaseValues(chartOptions *helm.ChartOptions, log log.SimpleLogger) (string, error) {
 	var (
 		image               = chartOptions.K3SImage
 		serverVersionString string
