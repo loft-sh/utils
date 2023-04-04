@@ -135,6 +135,20 @@ isolation:
   enabled: true`
 	}
 
+	if chartOptions.DisableTelemetry {
+		values += `
+telemetry:
+  disabled: "true"`
+	} else if chartOptions.InstanceCreatorType != "" || chartOptions.InstanceCreatorUID != "" {
+		values += `
+telemetry:
+  disabled: "false"
+  instanceCreator: "##INSTANCE_CREATOR##"
+  instanceCreatorUID: "##INSTANCE_CREATOR_UID##"`
+		values = strings.ReplaceAll(values, "##INSTANCE_CREATOR##", chartOptions.InstanceCreatorType)
+		values = strings.ReplaceAll(values, "##INSTANCE_CREATOR_UID##", chartOptions.InstanceCreatorUID)
+	}
+
 	values = strings.TrimSpace(values)
 	return values, nil
 }
