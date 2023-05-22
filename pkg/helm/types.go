@@ -5,6 +5,11 @@ const (
 	K0SChart = "vcluster-k0s"
 	K8SChart = "vcluster-k8s"
 	EKSChart = "vcluster-eks"
+
+	K3SProChart = "vcluster-pro"
+	K0SProChart = "vcluster-pro-k0s"
+	K8SProChart = "vcluster-pro-k8s"
+	EKSProChart = "vcluster-pro-eks"
 )
 
 // ChartOptions holds the chart options
