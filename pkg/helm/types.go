@@ -35,3 +35,7 @@ type Version struct {
 	Major string
 	Minor string
 }
+
+func IsVclusterPro(chartName string) bool {
+	return chartName == K3SProChart || chartName == K0SProChart || chartName == K8SProChart || chartName == EKSProChart
+}
