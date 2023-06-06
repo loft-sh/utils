@@ -9,9 +9,9 @@ import (
 
 var K0SVersionMap = map[string]string{
 	"1.27": "k0sproject/k0s:v1.27.2-k0s.0",
-	"1.26": "k0sproject/k0s:v1.26.4-k0s.0",
-	"1.25": "k0sproject/k0s:v1.25.8-k0s.1",
-	"1.24": "k0sproject/k0s:v1.24.12-k0s.1",
+	"1.26": "k0sproject/k0s:v1.26.5-k0s.0",
+	"1.25": "k0sproject/k0s:v1.25.10-k0s.0",
+	"1.24": "k0sproject/k0s:v1.24.14-k0s.0",
 	"1.23": "k0sproject/k0s:v1.23.15-k0s.0",
 }
 

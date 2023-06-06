@@ -12,9 +12,9 @@ import (
 
 var K3SVersionMap = map[string]string{
 	"1.27": "rancher/k3s:v1.27.2-k3s1",
-	"1.26": "rancher/k3s:v1.26.4-k3s1",
-	"1.25": "rancher/k3s:v1.25.9-k3s1",
-	"1.24": "rancher/k3s:v1.24.13-k3s1",
+	"1.26": "rancher/k3s:v1.26.5-k3s1",
+	"1.25": "rancher/k3s:v1.25.10-k3s1",
+	"1.24": "rancher/k3s:v1.24.14-k3s1",
 	"1.23": "rancher/k3s:v1.23.17-k3s1",
 }
 
