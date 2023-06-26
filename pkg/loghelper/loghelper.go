@@ -2,6 +2,7 @@ package loghelper
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/go-logr/logr"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -101,4 +102,14 @@ func Error(err error, message string, keysAndValues ...interface{}) {
 
 func Errorf(format string, a ...interface{}) {
 	(&logger{ctrl.Log}).Errorf(format, a...)
+}
+
+func Fatal(err error, args ...any) {
+	(&logger{ctrl.Log}).Error(err, fmt.Sprint(args...))
+	os.Exit(1)
+}
+
+func Fatalf(format string, a ...any) {
+	(&logger{ctrl.Log}).Errorf(format, a...)
+	os.Exit(1)
 }
