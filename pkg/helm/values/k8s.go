@@ -8,27 +8,27 @@ import (
 )
 
 var K8SAPIVersionMap = map[string]string{
-	"1.28": "registry.k8s.io/kube-apiserver:v1.28.0",
-	"1.27": "registry.k8s.io/kube-apiserver:v1.27.3",
-	"1.26": "registry.k8s.io/kube-apiserver:v1.26.6",
-	"1.25": "registry.k8s.io/kube-apiserver:v1.25.11",
-	"1.24": "registry.k8s.io/kube-apiserver:v1.24.15",
+	"1.28": "registry.k8s.io/kube-apiserver:v1.28.2",
+	"1.27": "registry.k8s.io/kube-apiserver:v1.27.6",
+	"1.26": "registry.k8s.io/kube-apiserver:v1.26.9",
+	"1.25": "registry.k8s.io/kube-apiserver:v1.25.14",
+	"1.24": "registry.k8s.io/kube-apiserver:v1.24.17",
 }
 
 var K8SControllerVersionMap = map[string]string{
-	"1.28": "registry.k8s.io/kube-controller-manager:v1.28.0",
-	"1.27": "registry.k8s.io/kube-controller-manager:v1.27.3",
-	"1.26": "registry.k8s.io/kube-controller-manager:v1.26.6",
-	"1.25": "registry.k8s.io/kube-controller-manager:v1.25.11",
-	"1.24": "registry.k8s.io/kube-controller-manager:v1.24.15",
+	"1.28": "registry.k8s.io/kube-controller-manager:v1.28.2",
+	"1.27": "registry.k8s.io/kube-controller-manager:v1.27.6",
+	"1.26": "registry.k8s.io/kube-controller-manager:v1.26.9",
+	"1.25": "registry.k8s.io/kube-controller-manager:v1.25.14",
+	"1.24": "registry.k8s.io/kube-controller-manager:v1.24.17",
 }
 
 var K8SSchedulerVersionMap = map[string]string{
-	"1.28": "registry.k8s.io/kube-scheduler:v1.28.0",
-	"1.27": "registry.k8s.io/kube-scheduler:v1.27.3",
-	"1.26": "registry.k8s.io/kube-scheduler:v1.26.6",
-	"1.25": "registry.k8s.io/kube-scheduler:v1.25.11",
-	"1.24": "registry.k8s.io/kube-scheduler:v1.24.15",
+	"1.28": "registry.k8s.io/kube-scheduler:v1.28.2",
+	"1.27": "registry.k8s.io/kube-scheduler:v1.27.6",
+	"1.26": "registry.k8s.io/kube-scheduler:v1.26.9",
+	"1.25": "registry.k8s.io/kube-scheduler:v1.25.14",
+	"1.24": "registry.k8s.io/kube-scheduler:v1.24.17",
 }
 
 var K8SEtcdVersionMap = map[string]string{

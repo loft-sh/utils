@@ -8,10 +8,10 @@ import (
 )
 
 var K0SVersionMap = map[string]string{
-	"1.27": "k0sproject/k0s:v1.27.3-k0s.0",
-	"1.26": "k0sproject/k0s:v1.26.6-k0s.0",
-	"1.25": "k0sproject/k0s:v1.25.11-k0s.0",
-	"1.24": "k0sproject/k0s:v1.24.15-k0s.0",
+	"1.27": "k0sproject/k0s:v1.27.5-k0s.0",
+	"1.26": "k0sproject/k0s:v1.26.8-k0s.0",
+	"1.25": "k0sproject/k0s:v1.25.13-k0s.0",
+	"1.24": "k0sproject/k0s:v1.24.17-k0s.0",
 }
 
 func getDefaultK0SReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger) (string, error) {
