@@ -40,34 +40,43 @@ var EKSCoreDNSVersionMap = map[string]string{
 }
 
 func getDefaultEKSReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger) (string, error) {
-	serverVersionString := GetKubernetesVersion(chartOptions.KubernetesVersion)
-	serverMinorInt, err := GetKubernetesMinorVersion(chartOptions.KubernetesVersion)
-	if err != nil {
-		return "", err
-	}
+	apiImage := ""
+	controllerImage := ""
+	etcdImage := ""
+	corednsImage := ""
+	if chartOptions.KubernetesVersion.Major != "" && chartOptions.KubernetesVersion.Minor != "" {
+		serverVersionString := GetKubernetesVersion(chartOptions.KubernetesVersion)
+		serverMinorInt, err := GetKubernetesMinorVersion(chartOptions.KubernetesVersion)
+		if err != nil {
+			return "", err
+		}
 
-	apiImage := EKSAPIVersionMap[serverVersionString]
-	controllerImage := EKSControllerVersionMap[serverVersionString]
-	etcdImage := EKSEtcdVersionMap[serverVersionString]
-	corednsImage, ok := EKSCoreDNSVersionMap[serverVersionString]
-	if !ok {
-		if serverMinorInt > 27 {
-			log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.27", "serverVersion", serverVersionString)
-			apiImage = EKSAPIVersionMap["1.27"]
-			controllerImage = EKSControllerVersionMap["1.27"]
-			etcdImage = EKSEtcdVersionMap["1.27"]
-			corednsImage = EKSCoreDNSVersionMap["1.27"]
-		} else {
-			log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.23", "serverVersion", serverVersionString)
-			apiImage = EKSAPIVersionMap["1.23"]
-			controllerImage = EKSControllerVersionMap["1.23"]
-			etcdImage = EKSEtcdVersionMap["1.23"]
-			corednsImage = EKSCoreDNSVersionMap["1.23"]
+		var ok bool
+		apiImage = EKSAPIVersionMap[serverVersionString]
+		controllerImage = EKSControllerVersionMap[serverVersionString]
+		etcdImage = EKSEtcdVersionMap[serverVersionString]
+		corednsImage, ok = EKSCoreDNSVersionMap[serverVersionString]
+		if !ok {
+			if serverMinorInt > 27 {
+				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.27", "serverVersion", serverVersionString)
+				apiImage = EKSAPIVersionMap["1.27"]
+				controllerImage = EKSControllerVersionMap["1.27"]
+				etcdImage = EKSEtcdVersionMap["1.27"]
+				corednsImage = EKSCoreDNSVersionMap["1.27"]
+			} else {
+				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.23", "serverVersion", serverVersionString)
+				apiImage = EKSAPIVersionMap["1.23"]
+				controllerImage = EKSControllerVersionMap["1.23"]
+				etcdImage = EKSEtcdVersionMap["1.23"]
+				corednsImage = EKSCoreDNSVersionMap["1.23"]
+			}
 		}
 	}
 
 	// build values
-	values := `api:
+	values := ""
+	if apiImage != "" {
+		values = `api:
   image: ##API_IMAGE##
 controller:
   image: ##CONTROLLER_IMAGE##
@@ -76,9 +85,10 @@ etcd:
 coredns:
   image: ##COREDNS_IMAGE##
 `
-	values = strings.ReplaceAll(values, "##API_IMAGE##", apiImage)
-	values = strings.ReplaceAll(values, "##CONTROLLER_IMAGE##", controllerImage)
-	values = strings.ReplaceAll(values, "##ETCD_IMAGE##", etcdImage)
-	values = strings.ReplaceAll(values, "##COREDNS_IMAGE##", corednsImage)
+		values = strings.ReplaceAll(values, "##API_IMAGE##", apiImage)
+		values = strings.ReplaceAll(values, "##CONTROLLER_IMAGE##", controllerImage)
+		values = strings.ReplaceAll(values, "##ETCD_IMAGE##", etcdImage)
+		values = strings.ReplaceAll(values, "##COREDNS_IMAGE##", corednsImage)
+	}
 	return addCommonReleaseValues(values, chartOptions)
 }

@@ -28,7 +28,7 @@ func getDefaultK3SReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger
 		err                 error
 	)
 
-	if image == "" {
+	if image == "" && chartOptions.KubernetesVersion.Major != "" && chartOptions.KubernetesVersion.Minor != "" {
 		serverVersionString = GetKubernetesVersion(chartOptions.KubernetesVersion)
 		serverMinorInt, err = GetKubernetesMinorVersion(chartOptions.KubernetesVersion)
 		if err != nil {
@@ -49,19 +49,19 @@ func getDefaultK3SReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger
 	}
 
 	// build values
-	values := `vcluster:
+	values := ""
+	if image != "" {
+		values = `vcluster:
   image: ##IMAGE##
-##BASEARGS##
 `
+		values = strings.ReplaceAll(values, "##IMAGE##", image)
+	}
 	if chartOptions.Isolate {
 		values += `
 securityContext:
   runAsUser: 12345
   runAsNonRoot: true`
 	}
-
-	values = strings.ReplaceAll(values, "##IMAGE##", image)
-
 	return addCommonReleaseValues(values, chartOptions)
 }
 
