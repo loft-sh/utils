@@ -39,9 +39,9 @@ func getDefaultK3SReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger
 		var ok bool
 		image, ok = K3SVersionMap[serverVersionString]
 		if !ok {
-			if serverMinorInt > 27 {
-				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.27", "serverVersion", serverVersionString)
-				image = K3SVersionMap["1.27"]
+			if serverMinorInt > 28 {
+				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.28", "serverVersion", serverVersionString)
+				image = K3SVersionMap["1.28"]
 			} else {
 				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.23", "serverVersion", serverVersionString)
 				image = K3SVersionMap["1.23"]
