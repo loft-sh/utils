@@ -12,8 +12,6 @@ var EKSAPIVersionMap = map[string]string{
 	"1.27": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.27.6-eks-1-27-13",
 	"1.26": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.26.9-eks-1-26-19",
 	"1.25": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.25.14-eks-1-25-23",
-	"1.24": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.24.17-eks-1-24-27",
-	"1.23": "public.ecr.aws/eks-distro/kubernetes/kube-apiserver:v1.23.17-eks-1-23-32",
 }
 
 var EKSControllerVersionMap = map[string]string{
@@ -21,8 +19,6 @@ var EKSControllerVersionMap = map[string]string{
 	"1.27": "public.ecr.aws/eks-distro/kubernetes/kube-controller-manager:v1.27.6-eks-1-27-13",
 	"1.26": "public.ecr.aws/eks-distro/kubernetes/kube-controller-manager:v1.26.9-eks-1-26-19",
 	"1.25": "public.ecr.aws/eks-distro/kubernetes/kube-controller-manager:v1.25.14-eks-1-25-23",
-	"1.24": "public.ecr.aws/eks-distro/kubernetes/kube-controller-manager:v1.24.17-eks-1-24-27",
-	"1.23": "public.ecr.aws/eks-distro/kubernetes/kube-controller-manager:v1.23.17-eks-1-23-32",
 }
 
 var EKSEtcdVersionMap = map[string]string{
@@ -30,8 +26,6 @@ var EKSEtcdVersionMap = map[string]string{
 	"1.27": "public.ecr.aws/eks-distro/etcd-io/etcd:v3.5.8-eks-1-27-13",
 	"1.26": "public.ecr.aws/eks-distro/etcd-io/etcd:v3.5.8-eks-1-26-19",
 	"1.25": "public.ecr.aws/eks-distro/etcd-io/etcd:v3.5.8-eks-1-25-23",
-	"1.24": "public.ecr.aws/eks-distro/etcd-io/etcd:v3.5.8-eks-1-24-27",
-	"1.23": "public.ecr.aws/eks-distro/etcd-io/etcd:v3.5.8-eks-1-23-32",
 }
 
 var EKSCoreDNSVersionMap = map[string]string{
@@ -39,8 +33,6 @@ var EKSCoreDNSVersionMap = map[string]string{
 	"1.27": "public.ecr.aws/eks-distro/coredns/coredns:v1.10.1-eks-1-27-13",
 	"1.26": "public.ecr.aws/eks-distro/coredns/coredns:v1.9.3-eks-1-26-19",
 	"1.25": "public.ecr.aws/eks-distro/coredns/coredns:v1.9.3-eks-1-25-23",
-	"1.24": "public.ecr.aws/eks-distro/coredns/coredns:v1.9.3-eks-1-24-27",
-	"1.23": "public.ecr.aws/eks-distro/coredns/coredns:v1.8.7-eks-1-23-32",
 }
 
 func getDefaultEKSReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger) (string, error) {
@@ -68,11 +60,11 @@ func getDefaultEKSReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger
 				etcdImage = EKSEtcdVersionMap["1.28"]
 				corednsImage = EKSCoreDNSVersionMap["1.28"]
 			} else {
-				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.23", "serverVersion", serverVersionString)
-				apiImage = EKSAPIVersionMap["1.23"]
-				controllerImage = EKSControllerVersionMap["1.23"]
-				etcdImage = EKSEtcdVersionMap["1.23"]
-				corednsImage = EKSCoreDNSVersionMap["1.23"]
+				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.25", "serverVersion", serverVersionString)
+				apiImage = EKSAPIVersionMap["1.25"]
+				controllerImage = EKSControllerVersionMap["1.25"]
+				etcdImage = EKSEtcdVersionMap["1.25"]
+				corednsImage = EKSCoreDNSVersionMap["1.25"]
 			}
 		}
 	}

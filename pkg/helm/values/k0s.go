@@ -12,7 +12,6 @@ var K0SVersionMap = map[string]string{
 	"1.27": "k0sproject/k0s:v1.27.6-k0s.0",
 	"1.26": "k0sproject/k0s:v1.26.9-k0s.0",
 	"1.25": "k0sproject/k0s:v1.25.14-k0s.0",
-	"1.24": "k0sproject/k0s:v1.24.17-k0s.0",
 }
 
 func getDefaultK0SReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger) (string, error) {
@@ -31,8 +30,8 @@ func getDefaultK0SReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger
 				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.28", "serverVersion", serverVersionString)
 				image = K0SVersionMap["1.28"]
 			} else {
-				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.24", "serverVersion", serverVersionString)
-				image = K0SVersionMap["1.24"]
+				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.25", "serverVersion", serverVersionString)
+				image = K0SVersionMap["1.25"]
 			}
 		}
 	}
