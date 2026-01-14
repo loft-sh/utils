@@ -16,21 +16,21 @@ import (
 )
 
 var (
-	helmVersion  = "v3.12.3"
+	helmVersion  = "v4.0.4"
 	helmDownload = "https://get.helm.sh/helm-" + helmVersion + "-" + runtime.GOOS + "-" + runtime.GOARCH
 )
 
-func NewHelmV3Command() Command {
-	return &helmv3{}
+func NewHelmV4Command() Command {
+	return &helmv4{}
 }
 
-type helmv3 struct{}
+type helmv4 struct{}
 
-func (h *helmv3) Name() string {
+func (h *helmv4) Name() string {
 	return "helm"
 }
 
-func (h *helmv3) InstallPath(toolHomeFolder string) (string, error) {
+func (h *helmv4) InstallPath(toolHomeFolder string) (string, error) {
 	home, err := homedir.Dir()
 	if err != nil {
 		return "", err
@@ -44,7 +44,7 @@ func (h *helmv3) InstallPath(toolHomeFolder string) (string, error) {
 	return installPath, nil
 }
 
-func (h *helmv3) DownloadURL() string {
+func (h *helmv4) DownloadURL() string {
 	url := helmDownload + ".tar.gz"
 	if runtime.GOOS == "windows" {
 		url = helmDownload + ".zip"
@@ -53,16 +53,16 @@ func (h *helmv3) DownloadURL() string {
 	return url
 }
 
-func (h *helmv3) IsValid(ctx context.Context, path string) (bool, error) {
+func (h *helmv4) IsValid(ctx context.Context, path string) (bool, error) {
 	out, err := command.Output(ctx, "", expand.ListEnviron(os.Environ()...), path, "version")
 	if err != nil {
 		return false, nil
 	}
 
-	return strings.Contains(string(out), `:"v3.`), nil
+	return strings.Contains(string(out), `:"v4.`), nil
 }
 
-func (h *helmv3) Install(toolHomeFolder, archiveFile string) error {
+func (h *helmv4) Install(toolHomeFolder, archiveFile string) error {
 	installPath, err := h.InstallPath(toolHomeFolder)
 	if err != nil {
 		return err
