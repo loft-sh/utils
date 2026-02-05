@@ -11,10 +11,16 @@ import (
 )
 
 var K3SVersionMap = map[string]string{
-	"1.28": "rancher/k3s:v1.28.2-k3s1",
-	"1.27": "rancher/k3s:v1.27.6-k3s1",
-	"1.26": "rancher/k3s:v1.26.9-k3s1",
-	"1.25": "rancher/k3s:v1.25.14-k3s1",
+	"1.34": "rancher/k3s:v1.34.2-k3s1",
+	"1.33": "rancher/k3s:v1.33.6-k3s1",
+	"1.32": "rancher/k3s:v1.32.10-k3s1",
+	"1.31": "rancher/k3s:v1.31.14-k3s1",
+	"1.30": "rancher/k3s:v1.30.14-k3s2",
+	"1.29": "rancher/k3s:v1.29.15-k3s1",
+	"1.28": "rancher/k3s:v1.28.15-k3s1",
+	"1.27": "rancher/k3s:v1.27.16-k3s1",
+	"1.26": "rancher/k3s:v1.26.20-k3s1",
+	"1.25": "rancher/k3s:v1.25.25-k3s1",
 }
 
 var replaceRegEx = regexp.MustCompile("[^0-9]+")
@@ -37,9 +43,9 @@ func getDefaultK3SReleaseValues(chartOptions *helm.ChartOptions, log logr.Logger
 		var ok bool
 		image, ok = K3SVersionMap[serverVersionString]
 		if !ok {
-			if serverMinorInt > 28 {
-				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.28", "serverVersion", serverVersionString)
-				image = K3SVersionMap["1.28"]
+			if serverMinorInt > 34 {
+				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.34", "serverVersion", serverVersionString)
+				image = K3SVersionMap["1.34"]
 			} else {
 				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.25", "serverVersion", serverVersionString)
 				image = K3SVersionMap["1.25"]
